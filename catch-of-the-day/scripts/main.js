@@ -6,8 +6,6 @@ var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var Navigation = ReactRouter.Navigation;
 var History = ReactRouter.History;
-
-var History = ReactRouter.History;
 var createBrowserHistory = require('history/lib/createBrowserHistory');
 
 var h = require('./helpers');
@@ -22,7 +20,7 @@ var App = React.createClass({
 		return (
 			<div className="catch-of-the-day">
 				<div className="menu">
-					<Header tagline="FRESH SEAFOOD GOOD" />
+					<Header tagline="FRESH SEAFOOD MARKET" />
 				</div>
 				<Order/>
 				<Inventory />
@@ -30,6 +28,20 @@ var App = React.createClass({
 		)
 	}
 });
+
+
+/*
+	Add Fish Form
+	<AddFishForm />
+*/
+
+var AddFishForm = React.createClass({
+	render : function() {
+		return (
+			<p>Testing this is the fish form</p>
+		)
+	}
+})
 
 
 /*
@@ -73,7 +85,11 @@ var Order = React.createClass({
 var Inventory = React.createClass({
 	render : function() {
 		return (
-			<p>Inventory</p>
+			<div>
+				<h2>Inventory</h2>
+
+				<AddFishForm />
+			</div>
 		)
 	}
 })

@@ -62,10 +62,11 @@ var AddFishForm = React.createClass({
 
 		// 3. Add the fish to the App State
 		this.props.addFish(fish);
+		this.refs.fishForm.reset();
 	},
 	render : function() {
 		return (
-			<form className="fish-edit" onSubmit={this.createFish}>
+			<form className="fish-edit" ref="fishForm" onSubmit={this.createFish}>
 				<input type="text" ref="name" placeholder="Fish Name"/>
 				<input type="text" ref="price" placeholder="Fish Price"/>
 				<select ref="status">

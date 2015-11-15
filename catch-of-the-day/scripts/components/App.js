@@ -9,21 +9,25 @@ import Header from './Header';
 import Order from './Order';
 import Inventory from './Inventory';
 import Catalyst from 'react-catalyst';
+import reactMixin from 'react-mixin';
+import autobind from 'autobind-decorator';
 
 // Firebase
 import Rebase from 're-base';
 var base = Rebase.createClass('https://catch-of-the-day-jpb.firebaseio.com/');
 
+@autobind
 class App extends React.Component {
 	
-	// mixins: [Catalyst.LinkedStateMixin],
-	
-	getInitialState() {
-		return {
+	constructor() {
+		super();
+
+		this.state = {
 			fishes : {},
 			order : {}
 		}
 	}
+	
 	componentDidMount() {
 		base.syncState(this.props.params.storeId + '/fishes', {
 			context : this,
@@ -93,11 +97,13 @@ class App extends React.Component {
 						{Object.keys(this.state.fishes).map(this.renderFish)}
 					</ul>
 				</div>
-				<Order fishes={this.state.fishes} order={this.state.order} linkState={this.linkState} removeFromOrder={this.removeFromOrder} />
-				<Inventory addFish={this.addFish} loadSamples={this.loadSamples} fishes={this.state.fishes} linkState={this.linkState} removeFish={this.removeFish} />
+				<Order fishes={this.state.fishes} order={this.state.order} linkState={this.linkState.bind(this)} removeFromOrder={this.removeFromOrder} />
+				<Inventory addFish={this.addFish} loadSamples={this.loadSamples} fishes={this.state.fishes} linkState={this.linkState.bind(this)} removeFish={this.removeFish} />
 			</div>
 		)
 	}
 };
+
+reactMixin.onClass(App, Catalyst.LinkedStateMixin);
 
 export default App;

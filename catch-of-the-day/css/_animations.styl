@@ -6,7 +6,7 @@
 */
 
 .order-enter
-  transition all 0.3s
+  transition all 6s
   transform translateX(-120%)
   max-height 0
   padding 0 !important
@@ -26,8 +26,8 @@
 
 
 .count-enter
-  transition all .2s
-  transform translateY(100%)
+  transition all .25s
+  transform translateY(100%) // start it just off screen
   &.count-enter-active
     opacity 1
     transform translateY(0)
@@ -35,12 +35,10 @@
     
   
 .count-leave
-  transition all .2s
+  transition all .25s
   left 0
   bottom 0
-  transform translateY(0)
+  transform translateY(0) // start it where it is
   position absolute
   &.count-leave-active
-    transform translateY(-100%)
-    
-  
+    transform translateY(-100%) // start it where it is

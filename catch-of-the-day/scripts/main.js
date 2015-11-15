@@ -22,6 +22,7 @@ var Catalyst = require('react-catalyst');
 */
 
 import NotFound from './components/NotFound';
+import StorePicker from './components/StorePicker';
 
 
 /*
@@ -100,36 +101,6 @@ var App = React.createClass({
 				<Order fishes={this.state.fishes} order={this.state.order} linkState={this.linkState} removeFromOrder={this.removeFromOrder} />
 				<Inventory addFish={this.addFish} loadSamples={this.loadSamples} fishes={this.state.fishes} linkState={this.linkState} removeFish={this.removeFish} />
 			</div>
-		)
-	}
-});
-
-
-/*
-	fish
-	<Fish />
-*/
-
-var Fish = React.createClass({
-	onButtonClick : function() {
-		console.log("Going to add the fish: ", this.props.index);
-		var key  =this.props.index;
-		this.props.addToOrder(key);
-	},
-	render : function() {
-		var details = this.props.details;
-		var isAvailable = (details.status === 'available' ? true : false);
-		var buttonText = (isAvailable ? 'Add To Order' : 'Sold Out!');
-		return (
-			<li className="menu-fish">
-				<img src={details.image} alt="" />
-				<h3 className="fish-name">
-					{details.name}
-					<span className="price">{h.formatPrice(details.price)}</span>
-				</h3>
-				<p>{details.desc}</p>
-				<button disable={!isAvailable} onClick={this.onButtonClick}>{buttonText}</button>
-			</li>
 		)
 	}
 });
@@ -311,33 +282,6 @@ var Inventory = React.createClass({
 		removeFish : React.PropTypes.func.isRequired
 	}
 })
-
-
-/* 
-	StorePick
-	This will let us make <StorePicker/>
-*/
-
-var StorePicker = React.createClass({
-	mixins : [History],
-	goToStore : function(event) {
-		event.preventDefault();
-		// get the data from the input
-		var storeId = this.refs.storeId.value;
-		this.history.pushState(null, '/store/' + storeId);
-	},
-	render: function() {
-		var name = "John";
-		return (
-			<form className="store-selector" onSubmit={this.goToStore}>
-				<h2>Please Enter A Store {name}</h2>
-				<input type="text" ref="storeId" defaultValue={h.getFunName()} required />
-				<input type="Submit" />
-			</form>
-		)
-	}
-
-});
 
 
 /*

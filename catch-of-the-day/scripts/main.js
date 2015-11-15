@@ -18,6 +18,13 @@ var base = Rebase.createClass('https://catch-of-the-day-jpb.firebaseio.com/');
 var Catalyst = require('react-catalyst');
 
 /*
+	Import Components
+*/
+
+import NotFound from './components/NotFound';
+
+
+/*
 	App
 */
 
@@ -85,7 +92,7 @@ var App = React.createClass({
 		return (
 			<div className="catch-of-the-day">
 				<div className="menu">
-					<Header tagline="FRESH SEAFOOD MARKET" />
+					<Header tagline="3000" />
 					<ul className="list-of-fishes">
 						{Object.keys(this.state.fishes).map(this.renderFish)}
 					</ul>
@@ -185,6 +192,9 @@ var Header = React.createClass({
 				<h3 className="tagline"><span>{this.props.tagline}</span></h3>
 			</header>
 		)
+	},
+	propTypes : {
+		tagline : React.PropTypes.string.isRequired
 	}
 })
 
@@ -250,6 +260,11 @@ var Order = React.createClass({
 			
 			</div>
 		)
+	},
+	propTypes : {
+		fishes : React.PropTypes.object.isRequired,
+		order : React.PropTypes.object.isRequired,
+		removeFromOrder : React.PropTypes.func.isRequired
 	}
 })
 
@@ -287,6 +302,13 @@ var Inventory = React.createClass({
 				<button onClick={this.props.loadSamples}>Load Sample Fishes</button>
 			</div>
 		)
+	},
+	propTypes : {
+		addFish : React.PropTypes.func.isRequired,
+		loadSamples : React.PropTypes.func.isRequired,
+		fishes : React.PropTypes.object.isRequired,
+		linkState : React.PropTypes.func.isRequired,
+		removeFish : React.PropTypes.func.isRequired
 	}
 })
 
@@ -315,17 +337,6 @@ var StorePicker = React.createClass({
 		)
 	}
 
-});
-
-
-/*
-	Not Found
-*/
-
-var NotFound = React.createClass({
-	render : function() {
-		return <h1>Not Found!</h1>
-	}
 });
 
 

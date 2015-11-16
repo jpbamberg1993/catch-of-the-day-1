@@ -3,6 +3,7 @@
 */
 
 import React from 'react';
+import autobind from 'autobind-decorator';
 
 class NotFound extends React.Component {
 	render() {

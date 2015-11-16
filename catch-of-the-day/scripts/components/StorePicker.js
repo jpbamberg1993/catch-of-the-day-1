@@ -17,8 +17,9 @@ class StorePicker extends React.Component {
     // get the data from the input
     console.log(this);
     var storeId = this.refs.storeId.value;
-    this.history.pushState(null, '/store/' + storeId);
+    this.transitionTo('/store/' + storeId);
   }
+  
   render() {
     return (
       <form className="store-selector" onSubmit={this.goToStore}>

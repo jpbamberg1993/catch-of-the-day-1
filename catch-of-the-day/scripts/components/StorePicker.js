@@ -11,15 +11,14 @@ import autobind from 'autobind-decorator';
 
 @autobind
 class StorePicker extends React.Component {
-  
+
   goToStore(event) {
     event.preventDefault();
     // get the data from the input
-    console.log(this);
     var storeId = this.refs.storeId.value;
-    this.transitionTo('/store/' + storeId);
+    this.history.pushState(null, '/store/' + storeId);
   }
-  
+
   render() {
     return (
       <form className="store-selector" onSubmit={this.goToStore}>
@@ -28,7 +27,7 @@ class StorePicker extends React.Component {
         <input type="Submit" />
       </form>
     )
-  }  
+  }
 }
 
 reactMixin.onClass(StorePicker, History);
